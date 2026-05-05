@@ -4,6 +4,7 @@ source("code/fit_learners.R")
 source("code/base_learners.R")
 library(dplyr)
 library(ggplot2)
+library(patchwork)
 
 
 
@@ -72,7 +73,6 @@ p2 <- ggplot(all_data, aes(x = n, y = log(mse), color = method, group = method))
     "X" = "#468E8B"
   ))
 
-library(patchwork)
 (p1 + p2) + plot_annotation(tag_levels = "a", tag_suffix=")")
 
 
