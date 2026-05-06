@@ -169,9 +169,6 @@ fit_dr_learner <- function(train_data, test_data, base_learner, K=2) {
     pi_hat_train[idx_pred] <- predict(pi_model, newdata = pred_data[, x_cols], type = "response")
   }
   
-  # clip propensity scores for numerical stability
-  pi_hat_train <- pmin(pmax(pi_hat_train, 0.01), 0.99)
-  
   # construct DR pseudo-outcomes
   pseudo_outcome <- (mu1_hat_train - mu0_hat_train) +
     t_train * (y_train - mu1_hat_train) / pi_hat_train -
