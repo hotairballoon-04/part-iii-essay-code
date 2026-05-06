@@ -120,7 +120,7 @@ fit_x_learner2 <- function(train_data, test_data, base_learner_mu, base_learner_
   )
 }
 
-fit_dr_learner <- function(train_data, test_data, base_learner, seed = 1) {
+fit_dr_learner <- function(train_data, test_data, base_learner, K=2) {
   # fit DR-learner, Kennedy (2023)
   x_cols <- get_covariates_names(train_data)
   
@@ -131,9 +131,7 @@ fit_dr_learner <- function(train_data, test_data, base_learner, seed = 1) {
   
   n <- nrow(train_data)
   
-  # create 2 folds
-  K <- 5
-  set.seed(seed)
+  # create K folds
   fold_id <- sample(rep(1:K, length.out = n))
   
   # store nuisance predictions over iterations of the two folds here
